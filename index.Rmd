@@ -1,0 +1,71 @@
+---
+title: "Discharge Data Example"
+author: "Wei Yuet Wong"
+date: "5/1/2022"
+output: 
+  html_document:
+    code_folding: hide
+    toc: yes
+    toc_float: yes
+    theme: yeti
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+library(tidyverse)
+library(dataRetrieval)
+library(dygraphs)
+library(xts)
+
+```
+# Methods
+
+The Poudre River at Lincoln Bridge is:
+
+  - Downstream of a bit of urban storm water
+  
+  - Near Odell Brewing Co.
+  
+  - Near an open area, and the Poudre River Trail
+  
+  - **Downstream of many agricultural diversions**
+
+## Site Description
+
+![](https://waterdata.usgs.gov/nwisweb/local/state/co/text/pics/06752260big.jpg)
+
+## Data Collection and Plots
+
+### Data Download
+
+```{r downloader}
+q <- readNWISdv(siteNumbers = "06752260",
+                parameterCd = "00060",
+                startDate = "2017-01-01",
+                endDate = "2020-03-31") %>% 
+
+rename(q = "X_00060_00003")
+```
+
+### Data Plot
+
+```{r, warning=FALSE, fig.width= 8, fig.height= 5}
+ggplot(q, aes(x = Date, y = q)) +
+  geom_line() +
+  ylab("Q (cfs)") +
+  ggtitle("Discharge of the Poudre River, Fort Collins")
+```
+
+### Interactive Data Plot
+
+```{r}
+q_xts <- xts(q$q, order.by = q$Date)
+
+dygraph(q_xts) %>% 
+  dyAxis("y", label = "Discharge (cfs)")
+```
+
+# Results
+
+## Interpretations
