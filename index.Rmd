@@ -1,6 +1,6 @@
 ---
 title: "Poudre River Discharge"
-date: "5/1/2022"
+date: "`r format(Sys.time(), '%d %B, %Y')`"
 output: 
   html_document:
     theme: yeti
@@ -21,6 +21,13 @@ library(dygraphs)
 library(xts)
 
 ```
+
+# Cache la Poudre River
+
+The Cache la Poudre River is located east of the Continental Divide, in the northern Front Range of Colorado. It is affectionately known as the "Poudre" by local residents and long-time visitors to the area. The main and south forks of the Poudre originate in Rocky Mountain National Park, then flow north and east through the Roosevelt National Forest. The river eventually passes through the City of Fort Collins, then joins the south Platte River east of Greeley. [Source](https://www.rivers.gov/rivers/cache-la-poudre.php)
+
+![](https://www.uncovercolorado.com/wp-content/uploads/2020/07/Cache-La-Poudre-River-CO-1.jpg)
+
 # Methods
 
 The Poudre River at Lincoln Bridge is:
