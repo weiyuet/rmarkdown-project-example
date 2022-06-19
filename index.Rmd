@@ -6,10 +6,10 @@ output:
     theme: yeti
     code_folding: hide
     toc: yes
+    toc_depth: 2
     toc_float: yes
     number_sections: true
-    fig_width: 6
-    fig_height: 4
+    
 ---
 
 ```{r setup, include=FALSE}
@@ -46,15 +46,20 @@ The Poudre River at Lincoln Bridge is:
 
 ![](https://waterdata.usgs.gov/nwisweb/local/state/co/text/pics/06752260big.jpg)
 
+Station operated by the U.S. Geological Survey in cooperation with [City of Fort Collins.](https://www.fcgov.com/)
+This station managed by the Lakewood Field Office.
+
 ## Data Collection and Plots
+
+Data from [USGS 06752260 CACHE LA POUDRE RIVER AT FORT COLLINS, CO](https://waterdata.usgs.gov/usa/nwis/uv?06752260)
 
 ### Data Download
 
 ```{r downloader}
 q <- readNWISdv(siteNumbers = "06752260",
                 parameterCd = "00060",
-                startDate = "2017-01-01",
-                endDate = "2020-03-31") %>% 
+                startDate = "2009-01-01",
+                endDate = "2021-03-31") %>% 
 
 rename(q = "X_00060_00003")
 ```
