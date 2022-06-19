@@ -46,8 +46,7 @@ The Poudre River at Lincoln Bridge is:
 
 ![](https://waterdata.usgs.gov/nwisweb/local/state/co/text/pics/06752260big.jpg)
 
-Station operated by the U.S. Geological Survey in cooperation with [City of Fort Collins.](https://www.fcgov.com/)
-This station managed by the Lakewood Field Office.
+Station operated by the U.S. Geological Survey in cooperation with [City of Fort Collins.](https://www.fcgov.com/) This station is managed by the Lakewood Field Office.
 
 ## Data Collection and Plots
 
@@ -58,7 +57,7 @@ Data from [USGS 06752260 CACHE LA POUDRE RIVER AT FORT COLLINS, CO](https://wate
 ```{r downloader}
 q <- readNWISdv(siteNumbers = "06752260",
                 parameterCd = "00060",
-                startDate = "2009-01-01",
+                startDate = "1990-01-01",
                 endDate = "2021-03-31") %>% 
 
 rename(q = "X_00060_00003")
@@ -69,9 +68,9 @@ rename(q = "X_00060_00003")
 ```{r, warning=FALSE}
 ggplot(q, aes(x = Date, y = q)) +
   geom_line() +
-  ylab("Q (cfs)") +
-  xlab(NULL) +
-  ggtitle("Discharge of the Poudre River, Fort Collins") +
+  labs(title = "Discharge of the Poudre River, Fort Collins",
+       x = "",
+       y = "Q (cfs)") +
   theme_light()
 ```
 
@@ -87,4 +86,12 @@ dygraph(q_xts) %>%
 
 # Results
 
+  - The river has detailed discharge records going back decades.
+  
+  - Curious about the low discharge volume in the 2000s.
+  
+  - Curious about the spike in 2013.
+  
+  - Curious about the yearly seasonal spikes.
+  
 ## Interpretations
