@@ -9,6 +9,8 @@ output:
     toc_depth: 2
     toc_float: yes
     number_sections: true
+    fig_width: 8
+    fig_height: 6
     
 ---
 
@@ -54,7 +56,7 @@ Data from [USGS 06752260 CACHE LA POUDRE RIVER AT FORT COLLINS, CO](https://wate
 
 ### Data Download
 
-```{r downloader}
+```{r load data}
 q <- readNWISdv(siteNumbers = "06752260",
                 parameterCd = "00060",
                 startDate = "1990-01-01",
@@ -68,7 +70,7 @@ rename(q = "X_00060_00003")
 ```{r, warning=FALSE}
 ggplot(q, aes(x = Date, y = q)) +
   geom_line() +
-  labs(title = "Discharge of the Poudre River, Fort Collins",
+  labs(title = "Poudre River Discharge, Fort Collins",
        x = "",
        y = "Q (cfs)") +
   theme_light()
@@ -90,8 +92,12 @@ dygraph(q_xts) %>%
   
   - Curious about the low discharge volume in the 2000s.
   
-  - Curious about the spike in 2013.
+  - Curious about the huge spike in 2013.
   
   - Curious about the yearly seasonal spikes.
   
 ## Interpretations
+
+  - Where is the source of the Poudre River?
+  
+  - Can we overlay Sun intensity data over the river discharge data?
