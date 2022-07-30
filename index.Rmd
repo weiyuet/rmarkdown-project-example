@@ -16,17 +16,16 @@ output:
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
-
+# Load libraries
 library(tidyverse)
 library(dataRetrieval)
 library(dygraphs)
 library(xts)
-
 ```
 
 # Cache la Poudre River
 
-The Cache la Poudre River is located east of the Continental Divide, in the northern Front Range of Colorado. It is affectionately known as the "Poudre" by local residents and long-time visitors to the area. The main and south forks of the Poudre originate in Rocky Mountain National Park, then flow north and east through the Roosevelt National Forest. The river eventually passes through the City of Fort Collins, then joins the south Platte River east of Greeley.
+The Cache la Poudre River is located east of the Continental Divide, in the northern Front Range of Colorado. It is affectionately known as the "Poudre" by local residents and long-time visitors to the area. The main and south forks of the Poudre originate in Rocky Mountain National Park, then flows north and east through the Roosevelt National Forest. The river eventually passes through the City of Fort Collins, then joins the south Platte River east of Greeley.
 
 [Source](https://www.rivers.gov/rivers/cache-la-poudre.php)
 
@@ -54,31 +53,31 @@ Station operated by the U.S. Geological Survey in cooperation with [City of Fort
 
 Data from [USGS 06752260 CACHE LA POUDRE RIVER AT FORT COLLINS, CO](https://waterdata.usgs.gov/usa/nwis/uv?06752260)
 
-### Data Download
+### Download Data
 
 ```{r load data}
 q <- readNWISdv(siteNumbers = "06752260",
                 parameterCd = "00060",
                 startDate = "1990-01-01",
-                endDate = "2021-03-31") %>% 
+                endDate = "2022-06-30") %>% 
 
 rename(q = "X_00060_00003")
 ```
 
 ### Data Plot
 
-```{r, warning=FALSE}
+```{r plot data, warning=FALSE}
 ggplot(q, aes(x = Date, y = q)) +
   geom_line() +
   labs(title = "Poudre River Discharge, Fort Collins",
        x = "",
        y = "Q (cfs)") +
-  theme_light()
+  theme_classic()
 ```
 
 ### Interactive Data Plot
 
-```{r}
+```{r interactive plot}
 #indicate time-series data
 q_xts <- xts(q$q, order.by = q$Date)
 
@@ -88,16 +87,29 @@ dygraph(q_xts) %>%
 
 # Results
 
-  - The river has detailed discharge records going back decades.
+  - The river has detailed discharge records going back to 1884 (Colorado Department of Natural Resources).
   
-  - Curious about the low discharge volume in the 2000s.
+  - There are 3 main sources 
+    - Native River Water
+    - C-BT System Water
+    - Other Transbasin Supplies
   
-  - Curious about the huge spike in 2013.
+  - Approximately 65% is from snow melt
   
-  - Curious about the yearly seasonal spikes.
+  - Source of the river is from Poudre Lake
   
-## Interpretations
+  - Peak discharge is in the summer; winter flows are very low
+  
+## Discussion
 
-  - Where is the source of the Poudre River?
+  - How does the source of the Poudre River affect discharge?
+  
+  - What are the causes of the seasonal variations?
+  
+  - What are the differences between a wet year, dry year, and average year?
   
   - Can we overlay Sun intensity data over the river discharge data?
+  
+  - Why was the discharge volume so low in the 2000s?
+  
+  - Who has what rights to use the water?
