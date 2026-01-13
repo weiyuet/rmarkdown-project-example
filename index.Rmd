@@ -29,7 +29,7 @@ The Cache la Poudre River is located east of the Continental Divide, in the nort
 
 [Source](https://www.rivers.gov/rivers/cache-la-poudre.php)
 
-![](https://www.uncovercolorado.com/wp-content/uploads/2020/07/Cache-La-Poudre-River-CO-1.jpg)
+![](https://poudreheritage.org/wp-content/uploads/DJI_0415_LowRes_3899a1f4-cb75-4ebb-a12d-c9f66881e3b9.jpg)
 
 # Methods
 
@@ -45,7 +45,7 @@ The Poudre River at Lincoln Bridge is:
 
 ## Site Description
 
-![](https://waterdata.usgs.gov/nwisweb/local/state/co/text/pics/06752260big.jpg)
+![](https://d9-wret.s3.us-west-2.amazonaws.com/assets/palladium/production/s3fs-public/styles/info_block/public/media/images/Trolly_Museum_at_East_Haven_web.jpg?itok=rdEsfRcO)
 
 Station operated by the U.S. Geological Survey in cooperation with [City of Fort Collins.](https://www.fcgov.com/) This station is managed by the Lakewood Field Office.
 
@@ -59,7 +59,7 @@ Data from [USGS 06752260 CACHE LA POUDRE RIVER AT FORT COLLINS, CO](https://wate
 q <- readNWISdv(siteNumbers = "06752260",
                 parameterCd = "00060",
                 startDate = "1990-01-01",
-                endDate = "2022-06-30") %>% 
+                endDate = "2025-12-31") %>% 
 
 rename(q = "X_00060_00003")
 ```
