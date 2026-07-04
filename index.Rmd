@@ -1,5 +1,5 @@
 ---
-title: "Poudre River Discharge"
+title: "Poudre River Discharge Data"
 date: "`r format(Sys.time(), '%d %B, %Y')`"
 output: 
   html_document:
@@ -59,7 +59,7 @@ Data from [USGS 06752260 CACHE LA POUDRE RIVER AT FORT COLLINS, CO](https://wate
 q <- readNWISdv(siteNumbers = "06752260",
                 parameterCd = "00060",
                 startDate = "1990-01-01",
-                endDate = "2025-12-31") %>% 
+                endDate = "2026-06-30") %>% 
 
 rename(q = "X_00060_00003")
 ```
@@ -69,8 +69,10 @@ rename(q = "X_00060_00003")
 ```{r plot data, warning=FALSE}
 ggplot(q, aes(x = Date, y = q)) +
   geom_line() +
+  scale_x_date(date_breaks = "3 years",
+               date_labels = "%Y") +
   labs(title = "Poudre River Discharge, Fort Collins",
-       x = "",
+       x = NULL,
        y = "Q (cfs)") +
   theme_classic()
 ```
