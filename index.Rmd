@@ -69,7 +69,7 @@ rename(q = "X_00060_00003")
 ```{r plot data, warning=FALSE}
 ggplot(q, aes(x = Date, y = q)) +
   geom_line() +
-  scale_x_date(date_breaks = "3 years",
+  scale_x_date(date_breaks = "5 years",
                date_labels = "%Y") +
   labs(title = "Poudre River Discharge, Fort Collins",
        x = NULL,
@@ -94,7 +94,7 @@ dygraph(q_xts) %>%
   - There are 3 main sources 
     - Native River Water
     - C-BT System Water
-    - Other Transbasin Supplies
+    - Other Trans-basin Supplies
   
   - Approximately 65% is from snow melt
   
